@@ -222,7 +222,6 @@
                 {
                     //Add user to session storage
                     sessionStorage.setItem("user", newUser.serialize());
-                    sessionStorage.setItem("username", username.val());
 
                     //hide any error messages
                     messageArea.hidden = true;
@@ -245,25 +244,6 @@
     function displayRegister()
     {
         DisplayNav();
-
-        let firstName = document.getElementById("fullName");
-        let firstNamePattern = /[A-Z][a-z]{1,25}/;
-        fullName.addEventListener("blur", function()
-        {
-            if(fullName.value.length < 2)
-            {
-                fullName.focus();
-                fullName.select();
-                messageArea.hidden = false;
-                messageArea.className = "alert alert-danger  ";
-                messageArea.textContent = "Please enter an appropriate name > 2 characters";
-            }
-            else
-            {
-                messageArea.removeAttribute("class");
-                messageArea.hidden = true;
-            }
-        });
     }
 
     function toggleLogin()
@@ -271,11 +251,11 @@
         //if the user is logged in
         if(sessionStorage.getItem("user"))
         {
-            let usernameText = sessionStorage.getItem("username");
             //change login to logout
-            $("#liLogin").html(
+            $("#aLogin").html(
                 `<a  class="nav-link" aria-current="page" href="#"><i id="navLogout" class="fas fa-sign-out-alt fa-lg"></i></a>`
-            );        
+            );
+                
             let navTextElement = document.getElementById("navLogout").textContent = " Logout";
             
 
@@ -291,11 +271,8 @@
             });
 
             $(`<li class="nav-item">
-            <a  class="nav-link" aria-current="page"><i id="navUser"class="fas fa-users fa-lg"></i></a>
-            </li>`).insertBefore("#liLogin");
-
-            navTextElement = document.getElementById("navUser").textContent = " " + usernameText;
-
+            <a id="contactListLink" class="nav-link" aria-current="page" href="contact-list.html"><i class="fas fa-users fa-lg"></i> Contact List</a>
+            </li>`).insertBefore("#login");
             
         }
     }

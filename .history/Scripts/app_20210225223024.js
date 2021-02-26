@@ -245,25 +245,6 @@
     function displayRegister()
     {
         DisplayNav();
-
-        let firstName = document.getElementById("fullName");
-        let firstNamePattern = /[A-Z][a-z]{1,25}/;
-        fullName.addEventListener("blur", function()
-        {
-            if(fullName.value.length < 2)
-            {
-                fullName.focus();
-                fullName.select();
-                messageArea.hidden = false;
-                messageArea.className = "alert alert-danger  ";
-                messageArea.textContent = "Please enter an appropriate name > 2 characters";
-            }
-            else
-            {
-                messageArea.removeAttribute("class");
-                messageArea.hidden = true;
-            }
-        });
     }
 
     function toggleLogin()
@@ -294,7 +275,7 @@
             <a  class="nav-link" aria-current="page"><i id="navUser"class="fas fa-users fa-lg"></i></a>
             </li>`).insertBefore("#liLogin");
 
-            navTextElement = document.getElementById("navUser").textContent = " " + usernameText;
+            navTextElement = document.getElementById("navUser").textContent = usernameText;
 
             
         }
