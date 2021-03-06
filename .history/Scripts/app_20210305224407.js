@@ -9,6 +9,7 @@
 
 "use strict";
 // User Class
+
 ((core)=>
 {
   class User {
@@ -397,36 +398,24 @@
         let registerButton = document.getElementById("registerButton");
             registerButton.addEventListener("click", function(event)
             {
-                //console.log("button clicked");
+                console.log("button clicked");
                 event.preventDefault();
                 // //Displays twice?
-                let displayName = firstName.value + lastName.value;
+                let fullName = firstName.value +" "+ lastName.value;
                 
-                let user = new core.User(firstName.value +" "+ lastName.value, emailAddress.value, displayName, password.value);
+                let user = new User("Andre123", "andre123456@dcmail.ca", "andre123456", "abc123456");
 
-                
+                console.log(user.serialize());
                 if(user.serialize())
                 {
                     localStorage.setItem((localStorage.length + 1).toString(),user.serialize());
-                    console.log(user.toString());
 
-                    //Clear form
-                    clearRegisterForm();
-
-                    //window.location.href = "index.html";
+                    window.location.href = "index.html";
                 }
                    
             });
         
         
-    }
-    function clearRegisterForm()
-    {
-        firstName.value = "";
-        lastName.value = "";
-        emailAddress.value = "";
-        password.value = "";
-        confirmPassword.value = "";
     }
     function validateFirstName()
     {
@@ -438,7 +427,7 @@
           if(!firstNamePattern.test($(this).val()))
           {
             $(this).trigger("focus").trigger("select");
-            messageArea.show().addClass("alert alert-danger").text("First name must be > 2 characters and a capitalized first letter. No special characters.");
+            messageArea.show().addClass("alert alert-danger").text("First name must be > 2 characters and a capitalized first letter.");
           }
           else
           {
@@ -457,7 +446,7 @@
           if(!lastNamePattern.test($(this).val()))
           {
             $(this).trigger("focus").trigger("select");
-            messageArea.show().addClass("alert alert-danger").text("Last name must be > 2 characters and a capitalized first letter. No special characters.");
+            messageArea.show().addClass("alert alert-danger").text("Last name must be > 2 characters and a capitalized first letter.");
           }
           else
           {

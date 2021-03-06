@@ -8,142 +8,6 @@
  */
 
 "use strict";
-// User Class
-((core)=>
-{
-  class User {
-    // getters and setters
-    get DisplayName() 
-    {
-      return this.m_displayName;
-    }
-  
-    set DisplayName(value) 
-    {
-      this.m_displayName = value;
-    }
-      
-    get EmailAddress() 
-    {
-      return this.m_emailAddress;
-    }
-  
-    set EmailAddress(value) 
-    {
-      this.m_emailAddress = value;
-    }
-
-    get Username() 
-    {
-      return this.m_username;
-    }
-  
-    set Username(value) 
-    {
-      this.m_username = value;
-    }
-    get Password() 
-    {
-      return this.m_password;
-    }
-  
-    set Password(value) 
-    {
-      this.m_password = value;
-    }
-  
-    // constructor
-    /**
-     * Creates an instance of user
-     * @param {string} displayName 
-     * @param {string} emailAddress 
-     * @param {string} username 
-     * @param {string} password 
-     */
-    constructor(displayName = "", emailAddress = "", username = "", password = "") 
-    {
-      this.DisplayName = displayName;
-      this.EmailAddress = emailAddress;
-      this.Username = username;
-      this.Password = password;
-      
-    }
-
-    // methods
-
-    /**
-     * This method overrides the built-in toString method for the User class
-     *
-     * @returns {string}
-     */
-    toString() 
-    {
-      return `Display Name     : ${this.DisplayName}\nEmail Address : ${this.EmailAddress}\nUser Name : ${this.Username}`;
-    }
-
-    /**
-     * This method returns a JSON object made up of the properties of the User class
-     *
-     * @returns {Object}
-     */
-    toJSON()
-    {
-      return {
-        "DisplayName": this.DisplayName,
-        "EmailAddress": this.EmailAddress,
-        "Username":this.Username
-      }
-    }
-
-    /**
-     * This method takes a JSON data object and assigns the value to the User class properties
-     * 
-     * @param {Object} data 
-     */
-    fromJSON(data)
-    {
-      this.DisplayName = data.DisplayName;
-      this.EmailAddress = data.EmailAddress;
-      this.Username = data.Username;
-      this.Password = data.Password;
-    }
-
-    /**
-     * This method converts the User into a comma-separated value string
-     *
-     * @returns {string}
-     */
-    serialize()
-    {
-      if(this.DisplayName !== "" && this.EmailAddress !== "" && this.Username !== "")
-      {
-        return `${this.DisplayName},${this.EmailAddress},${this.Username}`;
-      }
-      else 
-      {
-        console.error("One or more properties of the User is empty");
-        return null;
-      }
-    }
-
-    /**
-     * This method takes a comma-separated data string and assigns the values to the User class properties
-     *
-     * @param {string} data
-     * @return {void}
-     */
-    deserialize(data)
-    {
-      let propertyArray = data.split(",");
-      this.DisplayName = propertyArray[0];
-      this.EmailAddress = propertyArray[1];
-      this.Username = propertyArray[2];
-    }
-  }
-
-  core.User = User;
-
-})(core || (core={}));
 
 
 (function(){
@@ -205,7 +69,7 @@
         <p class = "">I'm a 2nd year student at Durham College in the Computer Programming and Analysis program. I've been
         coding for several years now because I enjoy it and always looking to improve in this aspect.</p>
         <a class = "fa-lg" href="./resumes/andre_resume.pdf" download>Resume Download</a></br></br>
-        <img src="./images/aa.jpg" alt="" style="width:350px;height:500px;">`;
+        <img src="./images/aa.jpg" alt="" style="width:500px;height:450px;">`;
 
         //About Michai
         aboutElement.innerHTML += `<h1>Michai Pryce:</h1>
@@ -213,7 +77,7 @@
         to code and learn about the evergrowing advancements in technology. This is the demonstration for our first lab!
         </p>
         <a class = "fa-lg" href="./resumes/Copy_of_Resume.docx" download>Resume Download</a></br></br>
-        <img src="./images/m.jpg" alt="" style="width:350px;height:500px;">`;
+        <img src="./images/m.jpg" alt="" style="width:500px;height:450px;">`;
 
     }
     /**
@@ -228,21 +92,21 @@
         projectsElement = document.getElementById("projectsText").innerHTML = 
         `<h3>Project One: COBOL Item List</h3>
         <p>This project reads records from a .dat file, performs calculations on the data then outputs it to a .out file neatly formatted.</p>
-        <img src="./images/p1.png" alt="" style="width:1000px;height:500px;">`;
+        <img src="./images/p1.png" alt="" style="width:800px;height:500px;">`;
 
         //Projects 2
         projectsElement = document.getElementById("projectsText").innerHTML += 
         `<h3>Project Two: C#, XAML, MDF  Preferred Shares and Common Shares</h3>
         <p>This project uses XAML for the windows form and a database to keep track of common and preferred shares.
         The database keeps track of how many shares(common/preferred) are  available and validation is applied.</p>
-        <img src="./images/p2.png" alt="" style="width:700px;height:500px;">`;
+        <img src="./images/p2.png" alt="" style="width:800px;height:500px;">`;
 
         //Projects 3
         projectsElement = document.getElementById("projectsText").innerHTML += 
         `<h3>Project Three: ASP.NET and MVC Framework Animal Shelter</h3>
         <p>This project is a web application that keeps track of animals, owners, appointment and login info in a database. 
         Relational database concepts are applied.</p>
-        <img src="./images/p3.png" alt="" style="width:1000px;height:500px;">`;
+        <img src="./images/p3.png" alt="" style="width:800px;height:500px;">`;
         
     }
     /**
@@ -257,21 +121,21 @@
         servicesElement = document.getElementById("servicesText").innerHTML = 
         `<h3>Web Development:</h3>
         <p>We offer a variety of different web development (Front-end, Back-end, Databases). Languages (PHP, ASP.NET, JavaScript)</p>
-        <img src="./images/s1.jpg" alt="" style="width:500px;height:500px;">`;
+        <img src="./images/s1.jpg" alt="" style="width:800px;height:500px;">`;
 
         //Services 2
         servicesElement = document.getElementById("servicesText").innerHTML += 
         `<h3>OOP Programming</h3>
         <p>We offer a variety of different Object Oriented Programming. We're experienced with C#, C++, Java etc.
         Whether it be windows forms applications, console applications GUI, etc.</p>
-        <img src="./images/s2.png" alt="" style="width:500px;height:500px;">`;
+        <img src="./images/s2.png" alt="" style="width:800px;height:500px;">`;
 
         //Services 3
         servicesElement = document.getElementById("servicesText").innerHTML += 
         `<h3>Database Management System</h3>
         <p>It's been almost 3 years since we've had experience in database development. We've used software such as
         Microsoft SQL Server and PgAdmin4. Experienced with relational database concepts.</p>
-        <img src="./images/s3.jpg" alt="" style="width:700px;height:500px;">`;
+        <img src="./images/s3.jpg" alt="" style="width:800px;height:500px;">`;
 
         
     }
@@ -381,144 +245,61 @@
     function displayRegister()
     {
         DisplayNav();
-        
         validateFirstName();
-        validateLastName();
-        validateEmail();
-        validatePassword();
-        validateConfirmPassword();
-
-            // //If all fields are correct
-            // if(validateFirstName() && validateLastName() && validateEmail() && validatePassword() && validateConfirmPassword())
-            // {
-                
-            // }
-
-        let registerButton = document.getElementById("registerButton");
-            registerButton.addEventListener("click", function(event)
-            {
-                //console.log("button clicked");
-                event.preventDefault();
-                // //Displays twice?
-                let displayName = firstName.value + lastName.value;
-                
-                let user = new core.User(firstName.value +" "+ lastName.value, emailAddress.value, displayName, password.value);
-
-                
-                if(user.serialize())
-                {
-                    localStorage.setItem((localStorage.length + 1).toString(),user.serialize());
-                    console.log(user.toString());
-
-                    //Clear form
-                    clearRegisterForm();
-
-                    //window.location.href = "index.html";
-                }
-                   
-            });
         
-        
-    }
-    function clearRegisterForm()
-    {
-        firstName.value = "";
-        lastName.value = "";
-        emailAddress.value = "";
-        password.value = "";
-        confirmPassword.value = "";
     }
     function validateFirstName()
     {
         let messageArea = $("#messageArea").hide();
+        let firstName = document.getElementById("firstName");
         let firstNamePattern = /([A-Z][a-z]{2,25})/;
-        
-        $("#firstName").on("blur", function()
+
+        firstName.addEventListener("blur", function()
         {
-          if(!firstNamePattern.test($(this).val()))
-          {
-            $(this).trigger("focus").trigger("select");
-            messageArea.show().addClass("alert alert-danger").text("First name must be > 2 characters and a capitalized first letter. No special characters.");
-          }
-          else
-          {
-              messageArea.removeAttr("class").hide();
-              return true;
-          }
+            if(!firstNamePattern.test($(this).val()))
+            {
+                firstName.focus();
+                firstName.select();
+                messageArea.hidden = false;
+                messageArea.className = "alert alert-danger  ";
+                messageArea.textContent = "Please enter an appropriate name, must be capitalized > 2 characters";
+            }
+            else
+            {
+                messageArea.removeAttribute("class");
+                messageArea.hidden = true;
+            }
         });
     }
     function validateLastName()
     {
-        let messageArea = $("#messageArea").hide();
+        let lastName = document.getElementById("lastName");
         let lastNamePattern = /([A-Z][a-z]{2,25})/;
-        
-        $("#lastName").on("blur", function()
+
+        fullName.addEventListener("blur", function()
         {
-          if(!lastNamePattern.test($(this).val()))
-          {
-            $(this).trigger("focus").trigger("select");
-            messageArea.show().addClass("alert alert-danger").text("Last name must be > 2 characters and a capitalized first letter. No special characters.");
-          }
-          else
-          {
-              messageArea.removeAttr("class").hide();
-              return true;
-          }
+            if(!lastNamePattern.test($(this).val()))
+            {
+                lastName.focus();
+                lastName.select();
+                messageArea.hidden = false;
+                messageArea.className = "alert alert-danger  ";
+                messageArea.textContent = "Please enter an appropriate name, must be capitalized > 2 characters";
+            }
+            else
+            {
+                messageArea.removeAttribute("class");
+                messageArea.hidden = true;
+            }
         });
     }
     function validateEmail()
     {
-        let messageArea = $("#messageArea").hide();
-        let emailAddressPattern = /^([a-zA-Z0-9._%-]{8,50})@([a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/;
         
-        $("#emailAddress").on("blur", function()
-        {
-          if(!emailAddressPattern.test($(this).val()))
-          {
-            $(this).trigger("focus").trigger("select");
-            messageArea.show().addClass("alert alert-danger").text("Please enter a valid Email Address, must be minimum 8 characters before @.");
-          }
-          else
-          {
-              messageArea.removeAttr("class").hide();
-              return true;
-          }
-        });
     }
     function validatePassword()
     {
-        let messageArea = $("#messageArea").hide();
-        var passwordPattern = /[a-zA-Z0-9!@#$%^&*()_+]{6,50}/;
-
         
-        $("#password").on("blur", function()
-        {
-          if(!passwordPattern.test($(this).val()))
-          {
-            $(this).trigger("focus").trigger("select");
-            messageArea.show().addClass("alert alert-danger").text("Please enter a valid password, must be minimum 6 characters.");
-          }
-          else
-          {
-              messageArea.removeAttr("class").hide();
-              return true;
-          }
-        });
-    }
-    function validateConfirmPassword()
-    {
-        let password = $("#password");
-        let confirmPassword = $("#confirmPassword");
-        let messageArea = $("#messageArea").hide();
-
-        $("#confirmPassword").on("blur", function()
-        {
-            if(password.val() === confirmPassword.val())
-            {
-                return true;
-                //console.log("good");
-            }
-        });
     }
 
     function toggleLogin()
