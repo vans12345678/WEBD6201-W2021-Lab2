@@ -385,39 +385,49 @@
      */
     function displayRegister()
     {
-      DisplayNav();
-      let messageArea = $("#messageArea").hide();
+        DisplayNav();
+        let messageArea = $("#messageArea").hide();
+        //Validate all the register page fields
+        validateFirstName();
+        validateLastName();
+        validateEmail();
+        validatePassword();
+        validateConfirmPassword();
 
-      //Validate all the register page fields
-      validateFirstName();
-      validateLastName();
-      validateEmail();
-      validatePassword();
-      validateConfirmPassword();
-
-        
-      $("#registerButton").on("click", function ()
-      {
-        
-        //console.log("button clicked");
-        //event.preventDefault();
-
-        let displayName = firstName.value + lastName.value;
-        
-        let user = new core.User(firstName.value +" "+ lastName.value, emailAddress.value, displayName, password.value);
-          
-        if(user.serialize() && password.value != "" && confirmPassword.value != "")
+        let registerButton = document.getElementById("registerButton");
+        if(validateFirstName() && validateLastName() && validateEmail() && validatePassword() && validateConfirmPassword())
         {
-          localStorage.setItem((localStorage.length + 1).toString(),user.serialize());
-          console.log(user.toString());
+          registerButton.addEventListener("click", function(event)
+          {
+              //console.log("button clicked");
+              event.preventDefault();
+              // //Displays twice?
+              let displayName = firstName.value + lastName.value;
+              
+              let user = new core.User(firstName.value +" "+ lastName.value, emailAddress.value, displayName, password.value);
 
-          //Clear form
-          
+              
+              if(user.serialize())
+              {
+                  localStorage.setItem((localStorage.length + 1).toString(),user.serialize());
+                  console.log(user.toString());
 
-          //window.location.href = "index.html";
+                  //Clear form
+                  clearRegisterForm();
+
+                  //window.location.href = "index.html";
+              }
+                  
+          });
         }
-      });    
-        clearRegisterForm();
+        else
+        {
+          $(this).trigger("focus").trigger("select");
+          messageArea.show().addClass("alert alert-danger").text("One or more fields invalid.");
+        }
+          
+        
+        
     }
     /**
      * Function to clear the register page form

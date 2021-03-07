@@ -395,29 +395,30 @@
       validatePassword();
       validateConfirmPassword();
 
+      let registerButton = document.getElementById("registerButton");
         
-      $("#registerButton").on("click", function ()
+      registerButton.addEventListener("click", (event)=>
       {
         
         //console.log("button clicked");
-        //event.preventDefault();
+        event.preventDefault();
 
         let displayName = firstName.value + lastName.value;
         
         let user = new core.User(firstName.value +" "+ lastName.value, emailAddress.value, displayName, password.value);
           
-        if(user.serialize() && password.value != "" && confirmPassword.value != "")
+        if(user.serialize())
         {
           localStorage.setItem((localStorage.length + 1).toString(),user.serialize());
           console.log(user.toString());
 
           //Clear form
-          
+          clearRegisterForm();
 
           //window.location.href = "index.html";
         }
       });    
-        clearRegisterForm();
+        
     }
     /**
      * Function to clear the register page form

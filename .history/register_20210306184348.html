@@ -54,46 +54,47 @@
                   <div class="login" id="contentArea"></div>
                   <div id = "messageArea" class="hidden"></div>
                       <form class = "formBackground " id="registerForm">
-                        <div class="mb-2">
+                        <div class="form-group mb-2">
                           <div class="row inputMargin">
-                            <div class="col-md-6">
-                              <input class="form-control" type="text" id="firstName" placeholder="First Name" name="firstName" required/>
+                            <div class="input-group col-md-6">
+                              <input class="form-control" type="text" id="firstName" placeholder="First Name" name="firstName" required >
                             </div>
                             <div class="col-md-6">
-                              <input class="form-control" type="text" name="lastName" id="lastName" placeholder="Last Name" required/>
+                              <input class="form-control" type="text" name="lastName" id="lastName" placeholder="Last Name" required= "required">
                             </div>
                           </div>
                         </div>
                         <div class="form-group mb-2">
                           <div class="row">
                             <div class="col-md-12">
-                              <input id="emailAddress" type="email" class="form-control" placeholder="Email Address" aria-label="Email Address" aria-describedby="Email Address Input"
-                              name="emailAddress" required/>
+                              <input id="emailAddress" type="email" class="form-control" aria-label="Email Address" aria-describedby="Email Address Input"
+                              name="emailAddress" required>
                             </div>
                           </div>
                         </div>
                         <div class="form-group mb-2">
                           <div class="row">
                             <div class="col-md-12">
-                              <input type="password" class="form-control" id="password" name="password"  value="" placeholder="Password" required/>
+                              <input type="password" class="form-control" id="password" name="password"  
+                              value="" placeholder="Password"required= "required">
                             </div>
                           </div>
                         </div>
                         <div class="form-group mb-2">
                           <div class="row">
                             <div class="col-md-12">
-                              <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" value="" placeholder="Confirm Password" required/>
+                              <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"  
+                              value="" placeholder="Confirm Password" required= "required">
                             </div>
                           </div>
                         </div>                                               
-                       <div class="text-end">
-                          <button id="registerButton" type="submit" class="btn btn-primary btn-md buttonMargin">Register</button>
+                        <div class="text-end">
+                          <button id="registerButton" type="button" class="btn btn-primary btn-md buttonMargin">Register</button>
                         </div>
                         <p class="text-center fs-5 fw-bold">
                         Already have an account? 
                         <a href="login.html">Sign in</a>
-                        </p> 
-                        
+                        </p>
                       </form>
                   </div>
             </div>

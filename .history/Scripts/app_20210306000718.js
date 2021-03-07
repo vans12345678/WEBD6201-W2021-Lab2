@@ -2,7 +2,7 @@
  * Name: Andre Agrippa, Michai Pryce
  * Date: 01/20/2021
  * Description: This file adds functionality to the Home,
- * About Us, Human Resources, Contact Us, Projects, Login, Register and Services
+ * About Us, Human Resources, Contact Us, Projects and Services
  * pages.
  * Date Completed:
  */
@@ -145,7 +145,7 @@
 
 })(core || (core={}));
 
-//BNgin IIFE
+
 (function(){
 
     /**
@@ -329,9 +329,6 @@
     {
         DisplayNav();
     }
-    /**
-     * Displays login page
-     */
     function displayLogin()
     {
         DisplayNav();
@@ -366,7 +363,7 @@
                     //hide any error messages
                     messageArea.hidden = true;
 
-                    //redirect user to secure area
+                    //redirect user to secure area (contact list?)
                     location.href = "index.html";
                 }
                 else
@@ -376,52 +373,53 @@
                     messageArea.hidden = false;
                     messageArea.className = "alert alert-danger text-center";
                     messageArea.textContent = "Error: Invalid login information";
+                    //messageArea.show().addClass("alert alert-danger").text("Error: Invalid login information");
                 }
             });
         });
     }
-    /**
-     * Displays the register page
-     */
     function displayRegister()
     {
-      DisplayNav();
-      let messageArea = $("#messageArea").hide();
-
-      //Validate all the register page fields
-      validateFirstName();
-      validateLastName();
-      validateEmail();
-      validatePassword();
-      validateConfirmPassword();
-
+        DisplayNav();
         
-      $("#registerButton").on("click", function ()
-      {
+        validateFirstName();
+        validateLastName();
+        validateEmail();
+        validatePassword();
+        validateConfirmPassword();
+
+            // //If all fields are correct
+            // if(validateFirstName() && validateLastName() && validateEmail() && validatePassword() && validateConfirmPassword())
+            // {
+                
+            // }
+
+        let registerButton = document.getElementById("registerButton");
+            registerButton.addEventListener("click", function(event)
+            {
+                //console.log("button clicked");
+                event.preventDefault();
+                // //Displays twice?
+                let displayName = firstName.value + lastName.value;
+                
+                let user = new core.User(firstName.value +" "+ lastName.value, emailAddress.value, displayName, password.value);
+
+                
+                if(user.serialize())
+                {
+                    localStorage.setItem((localStorage.length + 1).toString(),user.serialize());
+                    console.log(user.toString());
+
+                    //Clear form
+                    clearRegisterForm();
+
+                    //window.location.href = "index.html";
+                }
+                   
+            });
         
-        //console.log("button clicked");
-        //event.preventDefault();
-
-        let displayName = firstName.value + lastName.value;
         
-        let user = new core.User(firstName.value +" "+ lastName.value, emailAddress.value, displayName, password.value);
-          
-        if(user.serialize() && password.value != "" && confirmPassword.value != "")
-        {
-          localStorage.setItem((localStorage.length + 1).toString(),user.serialize());
-          console.log(user.toString());
-
-          //Clear form
-          
-
-          //window.location.href = "index.html";
-        }
-      });    
-        clearRegisterForm();
     }
-    /**
-     * Function to clear the register page form
-     */
     function clearRegisterForm()
     {
         firstName.value = "";
@@ -430,10 +428,6 @@
         password.value = "";
         confirmPassword.value = "";
     }
-    /**
-     * Function to validate the first name field in the register page
-     * @returns {true} When the first name is a valid entry
-     */
     function validateFirstName()
     {
         let messageArea = $("#messageArea").hide();
@@ -441,7 +435,6 @@
         
         $("#firstName").on("blur", function()
         {
-          //Test the first name field on the regex pattern
           if(!firstNamePattern.test($(this).val()))
           {
             $(this).trigger("focus").trigger("select");
@@ -454,10 +447,6 @@
           }
         });
     }
-    /**
-     * Function to validate the last name field in the register page
-     * @returns {true} When the last name is a valid entry
-     */
     function validateLastName()
     {
         let messageArea = $("#messageArea").hide();
@@ -465,7 +454,6 @@
         
         $("#lastName").on("blur", function()
         {
-          //Test the last name field on the regex pattern
           if(!lastNamePattern.test($(this).val()))
           {
             $(this).trigger("focus").trigger("select");
@@ -478,10 +466,6 @@
           }
         });
     }
-    /**
-     * Function to validate the email field in the register page
-     * @returns {true} When the email is a valid entry
-     */
     function validateEmail()
     {
         let messageArea = $("#messageArea").hide();
@@ -489,7 +473,6 @@
         
         $("#emailAddress").on("blur", function()
         {
-          //Test the email field on the regex pattern
           if(!emailAddressPattern.test($(this).val()))
           {
             $(this).trigger("focus").trigger("select");
@@ -502,10 +485,6 @@
           }
         });
     }
-    /**
-     * Function to validate the password field in the register page
-     * @returns {true} When the last name is a valid entry
-     */
     function validatePassword()
     {
         let messageArea = $("#messageArea").hide();
@@ -514,7 +493,6 @@
         
         $("#password").on("blur", function()
         {
-          //Test the password field on the regex pattern
           if(!passwordPattern.test($(this).val()))
           {
             $(this).trigger("focus").trigger("select");
@@ -527,10 +505,6 @@
           }
         });
     }
-    /**
-     * Function to validate the confirm password field in the register page
-     * @returns {true} When the confirm password is equal to password entered
-     */
     function validateConfirmPassword()
     {
         let password = $("#password");
@@ -539,23 +513,14 @@
 
         $("#confirmPassword").on("blur", function()
         {
-          //Make sure the confirm password text is equal to the password text
             if(password.val() === confirmPassword.val())
             {
                 return true;
                 //console.log("good");
             }
-            else
-            {
-              $(this).trigger("focus").trigger("select");
-              messageArea.show().addClass("alert alert-danger").text("Confirm password must match password");
-            }
         });
     }
 
-    /**
-     * If a user is logged in add logout functionality and a section in the nav that displays their name
-     */
     function toggleLogin()
     {
         //if the user is logged in
@@ -568,6 +533,8 @@
             );        
             let navTextElement = document.getElementById("navLogout").textContent = " Logout";
             
+
+
             //Add functionality to logout button
             $("#navLogout").on("click", function()
             {
@@ -578,7 +545,6 @@
                 location.href = "login.html";
             });
 
-            //Add user section in nav
             $(`<li class="nav-item">
             <a  class="nav-link" aria-current="page"><i id="navUser"class="fas fa-users fa-lg"></i></a>
             </li>`).insertBefore("#liLogin");

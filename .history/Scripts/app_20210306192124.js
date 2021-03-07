@@ -412,12 +412,12 @@
           console.log(user.toString());
 
           //Clear form
-          
+          clearRegisterForm();
 
           //window.location.href = "index.html";
         }
       });    
-        clearRegisterForm();
+        
     }
     /**
      * Function to clear the register page form

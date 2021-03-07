@@ -385,39 +385,54 @@
      */
     function displayRegister()
     {
-      DisplayNav();
-      let messageArea = $("#messageArea").hide();
+        DisplayNav();
+        let messageArea = $("#messageArea").hide();
 
-      //Validate all the register page fields
-      validateFirstName();
-      validateLastName();
-      validateEmail();
-      validatePassword();
-      validateConfirmPassword();
+        //Validate all the register page fields
+        validateFirstName();
+        validateLastName();
+        validateEmail();
+        validatePassword();
+        validateConfirmPassword();
 
+        let registerButton = document.getElementById("registerButton");
         
-      $("#registerButton").on("click", function ()
-      {
-        
-        //console.log("button clicked");
-        //event.preventDefault();
+          registerButton.addEventListener("click", function(event)
+          {
+            if(!$("#firstName").empty() || !$("#lastName").empty() || !$("#emailAddress").empty() || !$("#password").empty() || !$("#confirmPassword").empty())
+            {
+              //console.log("button clicked");
+              event.preventDefault();
 
-        let displayName = firstName.value + lastName.value;
+              let displayName = firstName.value + lastName.value;
+              
+              let user = new core.User(firstName.value +" "+ lastName.value, emailAddress.value, displayName, password.value);
+
+              
+              if(user.serialize())
+              {
+                  localStorage.setItem((localStorage.length + 1).toString(),user.serialize());
+                  console.log(user.toString());
+
+                  //Clear form
+                  clearRegisterForm();
+
+                  //window.location.href = "index.html";
+              }
+            }
+            else
+            {
+              $(this).trigger("focus").trigger("select");
+              messageArea.show().addClass("alert alert-danger").text("One or more fields invalid.");
+            }
+            
+
+          });
         
-        let user = new core.User(firstName.value +" "+ lastName.value, emailAddress.value, displayName, password.value);
+        
           
-        if(user.serialize() && password.value != "" && confirmPassword.value != "")
-        {
-          localStorage.setItem((localStorage.length + 1).toString(),user.serialize());
-          console.log(user.toString());
-
-          //Clear form
-          
-
-          //window.location.href = "index.html";
-        }
-      });    
-        clearRegisterForm();
+        
+        
     }
     /**
      * Function to clear the register page form

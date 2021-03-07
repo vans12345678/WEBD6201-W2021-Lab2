@@ -412,19 +412,19 @@
           console.log(user.toString());
 
           //Clear form
-          
+          clearRegisterForm();
 
           //window.location.href = "index.html";
         }
       });    
-        clearRegisterForm();
+        
     }
     /**
      * Function to clear the register page form
      */
     function clearRegisterForm()
     {
-        firstName.value = "";
+        firstName.value = " ";
         lastName.value = "";
         emailAddress.value = "";
         password.value = "";

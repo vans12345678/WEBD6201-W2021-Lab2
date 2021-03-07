@@ -385,39 +385,41 @@
      */
     function displayRegister()
     {
-      DisplayNav();
-      let messageArea = $("#messageArea").hide();
-
-      //Validate all the register page fields
-      validateFirstName();
-      validateLastName();
-      validateEmail();
-      validatePassword();
-      validateConfirmPassword();
-
+        DisplayNav();
         
-      $("#registerButton").on("click", function ()
-      {
+        //Validate all the register page fields
+        validateFirstName();
+        validateLastName();
+        validateEmail();
+        validatePassword();
+        validateConfirmPassword();
+
+        let registerButton = document.getElementById("registerButton");
+
+          registerButton.addEventListener("click", function(event)
+          {
+              //console.log("button clicked");
+              event.preventDefault();
+              // //Displays twice?
+              let displayName = firstName.value + lastName.value;
+              
+              let user = new core.User(firstName.value +" "+ lastName.value, emailAddress.value, displayName, password.value);
+
+              
+              if(user.serialize())
+              {
+                  localStorage.setItem((localStorage.length + 1).toString(),user.serialize());
+                  console.log(user.toString());
+
+                  //Clear form
+                  clearRegisterForm();
+
+                  //window.location.href = "index.html";
+              }
+                  
+          });
         
-        //console.log("button clicked");
-        //event.preventDefault();
-
-        let displayName = firstName.value + lastName.value;
         
-        let user = new core.User(firstName.value +" "+ lastName.value, emailAddress.value, displayName, password.value);
-          
-        if(user.serialize() && password.value != "" && confirmPassword.value != "")
-        {
-          localStorage.setItem((localStorage.length + 1).toString(),user.serialize());
-          console.log(user.toString());
-
-          //Clear form
-          
-
-          //window.location.href = "index.html";
-        }
-      });    
-        clearRegisterForm();
     }
     /**
      * Function to clear the register page form
@@ -548,7 +550,7 @@
             else
             {
               $(this).trigger("focus").trigger("select");
-              messageArea.show().addClass("alert alert-danger").text("Confirm password must match password");
+              messageArea.show().addClass("alert alert-danger").text("Confirm password must match the password");
             }
         });
     }
